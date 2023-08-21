@@ -1,0 +1,77 @@
+\documentclass{article}
+
+\title{Superposition under limited Realizability}
+\author{Alexander Pluska}
+
+\usepackage{url}
+\usepackage{bussproofs}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{wasysym}
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Dissertation Agreement - Exposé}
+
+\newcommand{\A}{\mathbf A}
+\newcommand{\B}{\mathbf B}
+\renewcommand{\lim}{\mathbf{lim\:}}
+\newcommand{\colim}{\mathbf{colim\:}}
+\newcommand{\0}{\mathbf 0}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\id}{\text{id}}
+\newcommand{\eq}{\text{eq}}
+\newcommand{\coeq}{\text{coeq}}
+\newcommand{\Set}{\textbf{Set}}
+\newcommand{\Sketch}{\textbf{Sketch}}
+\newcommand{\Mod}{\textbf{Mod}}
+\newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
+
+\begin{document}
+	\maketitle
+	
+	Building on previous work~\cite{thesis,pluska2023embedding} the goal of my dissertation is to further the state of multiple aspects of theorem proving for intuitionistic logic.
+
+	Intuitionistic logic refers to a flavor of logic in which the existence of an object can only be established by explicit construction, as opposed to classical logic where existence can be shown implicitly, e.g. by assuming non-existence and deriving a contradiction.
+
+	It essentially differentiates itself from classical logic by the fact that the law of excluded middle $A\vee\neg A$ and the double negation shift $\forall x\neg\neg P(x)\to\neg\neg\forall xP(x)$ are not valid.
+	Besides philosophical considerations, most prominently advocated by Brouwer~\cite{brouwer1907over} and Bishop~\cite{bishop1967foundations}, there is a particular motivation for studying intuitionistic logic from the perspective of computer science in that proofs directly correspond to computer programs --- as expressed in the Curry--Howard correspondence~\cite{howard1980formulae}. Importantly, most modern proof assistants such as Coq~\cite{bertot2013interactive} or Lean~\cite{de2015lean} are constructive.
+
+	The interest in intuitionistic logic has lead to the development of a number of automated theorem proving systems and a collection of benchmark problems (see e.g. the ILTP library website~\cite{iltp}).
+	The progress in automated reasoning for intuitionistic logic, however, has been slower than the  impressive advances in solvers for classic logics --- evidenced, e.g., by the CASC~\cite{casc} and SAT~\cite{satc} competitions..
+	This difference can partially be explained by fundamental differences between the logics.
+	First of all, determining intuitionistic validity is computationally harder, e.g., in the propositional case intuitionistic validity is \verb+PSPACE+-complete~\cite{statman1979intuitionistic}, whereas classical validity is \verb+coNP+-complete~\cite{cook1971complexity}.
+	A further advantage of classical logic is the existence of calculi that are particularly suited for automation, such as superposition~\cite{bachmair2001resolution}, which rely on the existence of convenient normal forms such as CNF, and the duality between validity and satisfiability (i.e., in order to show the validity of a formula it suffices to show the unsatisfiability of the negated formula, which is insufficient in intuitionistic logic).
+	The first dedicated intuitionistic theorem provers~\cite{mclaughlin2009efficient,tammet1996resolution} used the naïve inverse method, i.e., a direct search for a cut-free proof by applying the rules from some proof calculus inversely, which generally leads to a very complex search.
+	More recently, connection-based methods have been applied to various non-classical logics~\cite{otten2005clausal,otten2021nanocop}, including intuitionistic logic.
+	There have also been some successful attempts to study intuitionistic validity via embedding into higher-order classical logic~\cite{LEO}.
+	However, in comparison to classical provers, intuitionistic provers are much less mature and many modern techniques developed for classical provers have not been tested in an intuitionistic setting.
+
+	Building on my master's thesis~\cite{thesis} and previous paper~\cite{pluska2023embedding} the goal of my dissertation is to advance the state of theorem proving for intuitionistic logic and transfer known techniques and applications from theorem proving for classical logic. In particular I will focus on the following questions:
+	\begin{itemize}
+		\item Can techniques from state-of-the-art intuitionistic theorem provers~\cite{otten2008leancop,otten2021nanocop} and classical theorem provers~\cite{kovacs2013first,schulz2002brainiac} be combined to obtain a more efficient prover for intuitionistic logic? Current state-of-the-art intuitionistic provers feature a lean design~\cite{otten2008leancop,otten2021nanocop}, whereas state-of-the-art classical provers are generally much more complex~\cite{kovacs2013first}. This opens two possible avenues for merging the two approaches: either we can try to extend the complex classical provers with intuitionistic techniques to handle intuitionistic validity, or we can hand-pick a subset of the classical techniques that are particularly suited for intuitionistic logic and implement them in an intuitionistic prover. In particular modern approaches based on machine learning~\cite{kaliszyk2018reinforcement,loos2017deep,rawson2019neurally} could benefit from a lean underlying prover in terms of explainability and interpretability.
+		\item A known challenge for current provers is finding counter-models to validity. Since even fewer statements are valid in intuitionistic logic, this problem is even more pronounced. Can we find a way to efficiently find counter-models to intuitionistic validity? We shall primarily focus on formulas that are not intuitionistically valid, but classically valid. However, the general problem of finding counter-models to validity is also of interest.
+		\item One major application of classical theorem provers is automation of higher-order provers via hammers~\cite{bohme2010sledgehammer}. While a hammer for constructive proof assistants exists~\cite{czajka2018hammer} it uses classical theorem provers and cannot generally utilize the generated proof. Can we develop a hammer for constructive proof assistants that utilizes an intuitionistic prover and its proofs?
+	\end{itemize}
+	
+
+
+	\bibliographystyle{acm}
+	\bibliography{bibliography}
+	
+\end{document}
