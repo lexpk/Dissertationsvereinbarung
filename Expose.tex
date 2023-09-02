@@ -40,17 +40,23 @@
 \newcommand{\Sketch}{\textbf{Sketch}}
 \newcommand{\Mod}{\textbf{Mod}}
 \newcommand{\bigslant}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
-
+\newcounter{question}
+\newenvironment{question}{\smallskip\noindent\textbf{Question \refstepcounter{question}\arabic{question}}\begin{em}}{\end{em}}
+\newenvironment{method}{\smallskip\noindent\textbf{Methodology}}{}
 
 \begin{document}
+	
+
 	\maketitle
+
+	\section{Introduction}
 	
 	Building on previous work~\cite{thesis,pluska2023embedding} the goal of my dissertation is to further the state of multiple aspects of theorem proving for intuitionistic logic.
 
 	Intuitionistic logic refers to a flavor of logic in which the existence of an object can only be established by explicit construction, as opposed to classical logic where existence can be shown implicitly, e.g. by assuming non-existence and deriving a contradiction.
 
 	It essentially differentiates itself from classical logic by the fact that the law of excluded middle $A\vee\neg A$ and the double negation shift $\forall x\neg\neg P(x)\to\neg\neg\forall xP(x)$ are not valid.
-	Besides philosophical considerations, most prominently advocated by Brouwer~\cite{brouwer1907over} and Bishop~\cite{bishop1967foundations}, there is a particular motivation for studying intuitionistic logic from the perspective of computer science in that proofs directly correspond to computer programs --- as expressed in the Curry--Howard correspondence~\cite{howard1980formulae}. Importantly, most modern proof assistants such as Coq~\cite{bertot2013interactive} or Lean~\cite{de2015lean} are constructive.
+	Besides philosophical considerations, most prominently advocated by Brouwer~\cite{brouwer1907over} and Bishop~\cite{bishop1967foundations}, there is a particular motivation for studying intuitionistic logic from the perspective of computer science in that proofs directly correspond to computer programs --- as expressed in the Curry--Howard correspondence~\cite{howard1980formulae}. Importantly, most modern proof assistants such as Coq~\cite{bertot2013interactive} or Lean~\cite{de2015lean} are intuitionistic.
 
 	The interest in intuitionistic logic has lead to the development of a number of automated theorem proving systems and a collection of benchmark problems (see e.g. the ILTP library website~\cite{iltp}).
 	The progress in automated reasoning for intuitionistic logic, however, has been slower than the  impressive advances in solvers for classic logics --- evidenced, e.g., by the CASC~\cite{casc} and SAT~\cite{satc} competitions..
@@ -68,6 +74,36 @@
 		\item A known challenge for current provers is finding counter-models to validity. Since even fewer statements are valid in intuitionistic logic, this problem is even more pronounced. Can we find a way to efficiently find counter-models to intuitionistic validity? We shall primarily focus on formulas that are not intuitionistically valid, but classically valid. However, the general problem of finding counter-models to validity is also of interest.
 		\item One major application of classical theorem provers is automation of proof assistants via hammers~\cite{bohme2010sledgehammer}. While a hammer for constructive proof assistants exists~\cite{czajka2018hammer} it uses classical theorem provers and cannot generally utilize the generated proof. Can we develop a hammer for constructive proof assistants that utilizes an intuitionistic prover and its proofs?
 	\end{itemize}
+
+	\section{Background}
+
+	\subsection{Automated theorem proving}
+
+	\subsection{Intuitionistic Logic}
+
+	\section{Research plan}
+
+	\subsection{Problems}
+
+	\begin{question}
+		Can a syntactic embedding of intuitionistic logic into classical logic be leveraged to efficiently decide intuitionistic validity using a classical prover? Can we can we retrieve intuitionistic proofs/counter-models from the corresponding classical proofs/counter-models?
+	\end{question}
+
+	\vspace*{12pt}
+
+	\begin{method}
+		Utilizing the Kripke semantics for intuitionistic logic we devise a dual embedding to the famous embedding of classical logic into intuitionistic logic by G\"odel~\cite{goedel1933consistency}, implement this embedding to work on a standard problem format like TPTP~\cite{tptp} and apply it to a benchmark set of intuitionistic problems, e.g.~\cite{iltp}. We then apply a state-of-the-art classical prover to the embedded problems and compare the performance to state-of-the-art intuitionistic provers.
+	\end{method}
+
+	\vspace*{12pt}
+
+	\begin{question}
+		Can a more deep embedding of intuitionistic semantics as in~\cite{otten2005clausal} be used to leverage the power of modern classical provers for intuitionistic logic?
+	\end{question}
+
+	\subsection{Timeline}
+
+	\subsection{Lectures and conferences}
 	
 
 
