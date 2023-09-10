@@ -1,6 +1,5 @@
 \documentclass{article}
 
-\title{Superposition under limited Realizability}
 \author{Alexander Pluska}
 
 \usepackage{url}
@@ -92,14 +91,38 @@
 	\vspace*{12pt}
 
 	\begin{method}
-		Utilizing the Kripke semantics for intuitionistic logic we devise a dual embedding to the famous embedding of classical logic into intuitionistic logic by G\"odel~\cite{goedel1933consistency}, implement this embedding to work on a standard problem format like TPTP~\cite{tptp} and apply it to a benchmark set of intuitionistic problems, e.g.~\cite{iltp}. We then apply a state-of-the-art classical prover to the embedded problems and compare the performance to state-of-the-art intuitionistic provers.
+		Utilizing the Kripke semantics for intuitionistic logic we devise a dual embedding to the famous embedding of classical logic into intuitionistic logic by G\"odel~\cite{goedel1933consistency}, implement this embedding to work on a standard problem format like TPTP~\cite{tptp} and apply it to a benchmark set of intuitionistic problems, e.g.~\cite{iltp}. We then apply a state-of-the-art classical prover to the embedded problems and compare the performance to state-of-the-art intuitionistic provers. This question has been partially adressed in my master's thesis~\cite{thesis} and during the first year, resulting in a paper~\cite{pluska2023embedding}.
 	\end{method}
 
 	\vspace*{12pt}
 
 	\begin{question}
-		Can a more deep embedding of intuitionistic semantics as in~\cite{otten2005clausal} be used to leverage the power of modern classical provers for intuitionistic logic?
+		Can a more deep reflection of intuitionistic semantics in the proof calculus be used to leverage the power of modern classical provers for intuitionistic logic?
 	\end{question}
+
+	\begin{method}
+		It is possible to embed intuitionistic semantics more deeply into a proof calculus than as a syntactic transformation of the formula. This has already been done in connection calculi~\cite{otten2005clausal}. We will modify the resolution calculus~\cite{bachmair2001resolution} to reflect intuitionistic semantics and implement this calculus in a existing prover, e.g. vampire~\cite{kovacs2013first}. We will then compare the performance of this prover to state-of-the-art intuitionistic provers. Furthermore, we will experiment with other calculi and prover architectures.
+	\end{method}
+
+	\vspace*{12pt}
+
+	\begin{question}
+		Can we adapt modern techniques from classical provers to intuitionistic provers, in particular machine learning techniques?
+	\end{question}
+
+	\begin{method}
+		State-of-the-art intuitionistic proversusch an leanCoP~\cite{otten2008leancop} and nanoCoP~\cite{otten2021nanocop} are generally much simpler than state-of-the-art classical provers such as Vampire~\cite{kovacs2013first}, iProver~\cite{korovin2008iprover} or E~\cite{schulz2002brainiac}. On the one hand modern classical provers augment their calculus to utilize different forms of redundacy to minimize the search space, see e.g.~\cite{bbachmair1994rewrite,hillenbrand2013search, gleiss2020subsumption} and on the other hand they utilize powerful portifolio modes~\cite{rawson2018dynamic} in order to optimize their large suites of hyperparameters. More recently, machine learning techniques have been applied to direct search either by predicting hyperparameters, e.g.~\cite{bartek2020learning,bartek2023much}, or replacing the usual ordering-based search, e.g.~\cite{jakubuuv2017enigma,kaliszyk2018reinforcement,crouse2021deep}. We will handpick a subset of these techniques that are particularly suited for intuitionistic logic and implement them in a state-of-the-art intuitionistic prover, e.g. nanoCoP~\cite{otten2021nanocop}. We will then compare the performance of this prover to state-of-the-art intuitionistic provers. In particular in case of machine learning techniques we expect benefits in terms of explainability and interpretability due to the lean underlying prover.
+	\end{method}
+
+	\vspace*{12pt}
+
+	\begin{question}
+		Can we replace classical provers in settings where intuitionistic provers would be more suitable?
+	\end{question}
+
+	\begin{method}
+		Sometimes it is desirable to obtain a intuitionistic proof for a problem rather than a classical one, e.g. in the context of proof assistants based on constructive type theory such as Lean~\cite{de2015lean} or Coq~\cite{bertot2013interactive} or in program synthesis. There have been attempts to use classical provers in these context, e.g.~\cite{czajka2018hammer,hozzova2023program}. However, these approaches are limited in that they cannot generally utilize the generated proof and a successful proof does not even guarantee the existence of a solution. We will investigate whether we can replace classical provers in these settings with intuitionistic provers. 
+	\end{method}
 
 	\subsection{Timeline}
 
